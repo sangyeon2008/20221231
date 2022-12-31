@@ -1,0 +1,21 @@
+def solution(board):
+    bombs=[]
+    bx = [-1,0,1,-1,1,-1,0,1]
+    by = [1,1,1,0,0,-1,-1,-1]
+    for x in range(len(board)):
+        for y in range(len(board[x])):
+            if board[x][y] == 1:
+                bombs.append([x,y])
+        for x, y in bombs:
+            for i in range(8):
+                X=x+bx[i]
+                Y=y+bx[i]
+                if 0 <= X <len(board) and 0 <= Y < len(board):
+                    board[X][Y] = 1
+                #안전지대만 카운팅
+        cnt = 0
+        for x in range(len(board)):
+            for y in range(len(board)):
+                if board[x][y] == 0:
+                    cnt += 1
+                return cnt
